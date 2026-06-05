@@ -1,0 +1,1096 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DentalCare Clinic - Healthy Teeth is Wealth</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+:root{
+  --primary:#0056b3;
+  --primary-dark:#003d80;
+  --primary-light:#e8f1fb;
+  --primary-glow:rgba(0,86,179,0.25);
+  --charcoal:#1a1f2e;
+  --text-mid:#4a5568;
+  --text-light:#718096;
+  --white:#ffffff;
+  --bg-soft:#f7f9fc;
+  --border:#e2e8f0;
+  --card-shadow:0 4px 24px rgba(0,86,179,0.08);
+  --card-shadow-hover:0 12px 40px rgba(0,86,179,0.18);
+}
+body{font-family:'DM Sans',sans-serif;color:var(--charcoal);overflow-x:hidden;background:#fff}
+h1,h2,h3,h4{font-family:'Playfair Display',serif}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-thumb{background:var(--primary);border-radius:3px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transition:box-shadow 0.3s}
+nav.scrolled{box-shadow:0 4px 20px rgba(0,86,179,0.1)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-icon{width:42px;height:42px;background:var(--primary);border-radius:10px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round}
+.logo-text{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--charcoal)}
+.logo-text span{color:var(--primary)}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{text-decoration:none;font-size:0.875rem;font-weight:500;color:var(--text-mid);transition:color 0.2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--primary);transition:width 0.3s}
+.nav-links a:hover{color:var(--primary)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{background:var(--primary);color:#fff!important;padding:10px 22px;border-radius:8px;font-weight:600!important;transition:background 0.3s,transform 0.2s,box-shadow 0.2s!important}
+.nav-cta::after{display:none!important}
+.nav-cta:hover{background:var(--primary-dark)!important;transform:translateY(-1px);box-shadow:0 6px 18px var(--primary-glow)!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:24px;height:2px;background:var(--charcoal);border-radius:2px;transition:all 0.3s}
+.mobile-nav{display:none;position:fixed;inset:0;background:#fff;z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:32px}
+.mobile-nav.open{display:flex}
+.mobile-nav a{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:600;color:var(--charcoal);text-decoration:none;transition:color 0.2s}
+.mobile-nav a:hover{color:var(--primary)}
+.mobile-nav .mob-cta{background:var(--primary);color:#fff!important;padding:14px 36px;border-radius:10px}
+.close-mob{position:absolute;top:24px;right:24px;background:none;border:none;cursor:pointer;font-size:1.5rem;color:var(--charcoal)}
+
+/* HERO */
+#hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;padding-top:72px}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(110deg,#fff 0%,#fff 50%,var(--primary-light) 100%)}
+.hero-bg-img{position:absolute;right:0;top:0;bottom:0;width:55%;background:url('gggg.png') center/cover no-repeat;clip-path:polygon(12% 0,100% 0,100% 100%,0 100%)}
+.hero-bg-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,#fff 0%,rgba(255,255,255,0.1) 40%,rgba(0,86,179,0.15) 100%)}
+.hero-content{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:0 24px;width:100%}
+.hero-text{max-width:580px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--primary-light);color:var(--primary);padding:8px 18px;border-radius:50px;font-size:0.78rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:28px}
+.hero-badge-dot{width:8px;height:8px;background:var(--primary);border-radius:50%;animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+.hero-h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;line-height:1.1;color:var(--charcoal);margin-bottom:20px}
+.hero-h1 span{color:var(--primary)}
+.hero-desc{font-size:1rem;color:var(--text-mid);line-height:1.7;margin-bottom:36px;max-width:460px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--primary);color:#fff;padding:14px 28px;border-radius:10px;font-weight:600;font-size:0.95rem;text-decoration:none;transition:all 0.3s;border:none;cursor:pointer}
+.btn-primary:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 8px 24px var(--primary-glow)}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--primary);color:var(--primary);padding:13px 28px;border-radius:10px;font-weight:600;font-size:0.95rem;text-decoration:none;transition:all 0.3s}
+.btn-outline:hover{background:var(--primary);color:#fff}
+.hero-stats{display:flex;gap:36px;margin-top:48px;flex-wrap:wrap}
+.stat{display:flex;flex-direction:column}
+.stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--primary)}
+.stat-label{font-size:0.8rem;color:var(--text-light);margin-top:2px}
+.hero-divider{width:1px;background:var(--border);align-self:stretch;margin:4px 0}
+
+
+/* ABOUT */
+ #about{
+    padding:100px 0;
+    background:#fff;
+}
+
+.section-inner{
+    max-width:1280px;
+    margin:0 auto;
+    padding:0 24px;
+}
+
+.about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:stretch; /* same height */
+}
+
+.about-img-wrap{
+    position:relative;
+    height:100%;
+}
+
+.about-main-img{
+    width:100%;
+    height:100%;
+    min-height:700px;
+    object-fit:cover;
+    border-radius:20px;
+    box-shadow:var(--card-shadow);
+    display:block;
+}
+
+.about-float-img{
+    position:absolute;
+    bottom:20px;
+    right:20px;
+    width:140px;
+    height:140px;
+    object-fit:cover;
+    border-radius:14px;
+    border:4px solid #fff;
+    box-shadow:0 8px 32px rgba(0,86,179,0.15);
+}
+
+.about-badge-top{
+    position:absolute;
+    top:20px;
+    left:20px;
+    background:var(--primary);
+    color:#fff;
+    border-radius:14px;
+    padding:14px 18px;
+    text-align:center;
+    font-family:'Playfair Display',serif;
+    z-index:2;
+}
+
+.about-badge-top strong{
+    display:block;
+    font-size:1.8rem;
+    line-height:1;
+}
+
+.about-badge-top span{
+    font-size:0.7rem;
+    font-weight:400;
+    opacity:0.9;
+}
+
+.about-text{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    height:100%;
+}
+
+.section-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    width:max-content; /* About Us badge fix */
+    border:2px solid var(--primary);
+    color:var(--primary);
+    padding:6px 16px;
+    border-radius:50px;
+    font-size:0.75rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    margin-bottom:20px;
+}
+
+.section-h2{
+    font-size:clamp(1.8rem,3.5vw,2.8rem);
+    font-weight:800;
+    color:var(--charcoal);
+    line-height:1.15;
+    margin-bottom:16px;
+}
+
+.section-desc{
+    color:var(--text-mid);
+    line-height:1.7;
+    margin-bottom:18px;
+    font-size:0.95rem;
+}
+
+.checks{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin:20px 0 28px;
+}
+
+.check-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:0.9rem;
+    font-weight:500;
+}
+
+.check-icon{
+    width:22px;
+    height:22px;
+    background:var(--primary);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+}
+
+.check-icon svg{
+    width:12px;
+    height:12px;
+    stroke:#fff;
+    fill:none;
+    stroke-width:3;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+}
+
+/* MOBILE FIX */
+
+@media (max-width:991px){
+
+    .about-grid{
+        grid-template-columns:1fr;
+        gap:30px;
+    }
+
+    .about-text{
+        order:1; /* content first */
+    }
+
+    .about-img-wrap{
+        order:2; /* image after content */
+    }
+
+    .about-main-img{
+        min-height:420px;
+        height:420px;
+    }
+
+    .about-float-img{
+        display:none;
+    }
+
+    .section-h2{
+        font-size:2rem;
+    }
+}
+/* SERVICES */
+#services{padding:100px 0;background:var(--bg-soft)}
+.section-header{text-align:center;max-width:580px;margin:0 auto 60px}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.service-card{background:#fff;border-radius:16px;overflow:hidden;border:1.5px solid var(--border);transition:all 0.3s;cursor:pointer;position:relative}
+.service-card::after{content:'';position:absolute;inset:0;border-radius:16px;box-shadow:0 0 0 0 var(--primary-glow);transition:box-shadow 0.3s;pointer-events:none}
+.service-card:hover{border-color:var(--primary);transform:translateY(-6px);box-shadow:var(--card-shadow-hover)}
+.service-card:hover::after{box-shadow:0 0 0 3px rgba(0,86,179,0.12)}
+.service-img{width:100%;height:200px;object-fit:cover;transition:transform 0.4s}
+.service-card:hover .service-img{transform:scale(1.04)}
+.service-body{padding:20px}
+.service-body h3{font-size:1.05rem;font-weight:700;margin-bottom:8px;color:var(--charcoal)}
+.service-body p{font-size:0.85rem;color:var(--text-mid);line-height:1.6}
+.service-arrow{display:inline-flex;align-items:center;gap:4px;color:var(--primary);font-size:0.82rem;font-weight:600;margin-top:10px;text-decoration:none;transition:gap 0.2s}
+.service-arrow:hover{gap:8px}
+.service-arrow svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:filter 0.3s}
+.service-card:hover .service-arrow svg{filter:drop-shadow(0 0 4px rgba(0,86,179,0.5))}
+
+/* PROCESS */
+#process{padding:100px 0;background:#fff}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.process-grid::before{content:'';position:absolute;top:48px;left:12.5%;right:12.5%;height:2px;background:linear-gradient(to right,var(--primary-light),var(--primary),var(--primary-light));z-index:0}
+.process-step{text-align:center;padding:0 16px;position:relative;z-index:1}
+.step-num{width:96px;height:96px;border-radius:50%;background:var(--primary-light);border:3px solid var(--primary);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;position:relative;transition:all 0.3s}
+.step-num:hover{background:var(--primary);transform:scale(1.08);box-shadow:0 8px 28px var(--primary-glow)}
+.step-num:hover span{color:#fff}
+.step-num:hover svg{stroke:#fff}
+.step-num span{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:800;color:var(--primary)}
+.step-num svg{display:none}
+.step-label{font-size:0.7rem;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px}
+.step-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:10px;color:var(--charcoal)}
+.step-desc{font-size:0.82rem;color:var(--text-mid);line-height:1.6}
+
+/* TEAM */
+#team{padding:100px 0;background:var(--bg-soft)}
+.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:800px;margin:0 auto}
+.team-card{border-radius:20px;overflow:hidden;position:relative;cursor:pointer;box-shadow:var(--card-shadow);aspect-ratio:3/4}
+.team-img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease}
+.team-card:hover .team-img{transform:scale(1.06)}
+.team-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.75) 0%,rgba(0,0,0,0.1) 50%,transparent 100%);transition:background 0.3s}
+.team-card:hover .team-overlay{background:linear-gradient(to top,rgba(0,86,179,0.85) 0%,rgba(0,86,179,0.2) 50%,transparent 100%)}
+.team-info{position:absolute;bottom:0;left:0;right:0;padding:24px;color:#fff;transform:translateY(0)}
+.team-name{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;margin-bottom:4px}
+.team-role{font-size:0.8rem;opacity:0.85;margin-bottom:12px}
+.team-socials{display:flex;gap:10px;opacity:0;transform:translateY(10px);transition:all 0.3s}
+.team-card:hover .team-socials{opacity:1;transform:translateY(0)}
+.soc-btn{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.2);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,0.5);display:flex;align-items:center;justify-content:center;transition:all 0.2s;cursor:pointer;text-decoration:none}
+.soc-btn:hover{background:var(--primary);border-color:var(--primary);transform:scale(1.1)}
+.soc-btn svg{width:14px;height:14px;fill:#fff}
+
+/* TESTIMONIALS */
+#testimonials{padding:100px 0;background:#fff;overflow:hidden}
+.testi-carousel{position:relative;margin-top:60px}
+.testi-track-wrap{overflow:hidden}
+.testi-track{display:flex;transition:transform 0.5s cubic-bezier(0.4,0,0.2,1)}
+.testi-slide{min-width:33.333%;padding:0 12px;box-sizing:border-box}
+.testi-card{background:#fff;border:1.5px solid var(--border);border-radius:20px;padding:32px;height:100%;position:relative;transition:all 0.4s}
+.testi-card.active-center{background:var(--primary);border-color:var(--primary)}
+.testi-card.active-center .testi-text{color:#fff}
+.testi-card.active-center .testi-name{color:#fff}
+.testi-card.active-center .testi-role{color:rgba(255,255,255,0.75)}
+.testi-card.active-center .stars svg{fill:#ffd54f}
+.stars{display:flex;gap:3px;margin-bottom:16px}
+.stars svg{width:16px;height:16px;fill:#f59e0b}
+.testi-text{font-size:0.88rem;line-height:1.7;color:var(--text-mid);margin-bottom:20px;font-style:italic}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--primary-light)}
+.testi-card.active-center .testi-avatar{border-color:rgba(255,255,255,0.4)}
+.testi-name{font-weight:600;font-size:0.9rem}
+.testi-role{font-size:0.75rem;color:var(--text-light)}
+.testi-controls{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:36px}
+.testi-arrow{width:44px;height:44px;border-radius:50%;border:2px solid var(--primary);background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s}
+.testi-arrow:hover{background:var(--primary)}
+.testi-arrow:hover svg{stroke:#fff}
+.testi-arrow svg{width:18px;height:18px;stroke:var(--primary);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:stroke 0.2s}
+.testi-dots{display:flex;gap:8px}
+.testi-dot{width:10px;height:10px;border-radius:50%;background:var(--border);border:none;cursor:pointer;transition:all 0.3s}
+.testi-dot.active{background:var(--primary);width:28px;border-radius:5px}
+
+/* BOOKING */
+#booking{padding:100px 0;background:var(--bg-soft)}
+.booking-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.booking-left{display:flex;flex-direction:column}
+.checks-lg{display:flex;flex-direction:column;gap:14px;margin:24px 0 auto}
+.check-item-lg{display:flex;align-items:flex-start;gap:14px}
+.check-icon-lg{width:26px;height:26px;background:var(--primary-light);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.check-icon-lg svg{width:13px;height:13px;stroke:var(--primary);fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.check-item-lg strong{display:block;font-size:0.9rem;font-weight:600;margin-bottom:3px}
+.check-item-lg p{font-size:0.82rem;color:var(--text-mid);line-height:1.5}
+.booking-right{}
+.booking-form{background:#fff;border-radius:20px;padding:36px;box-shadow:var(--card-shadow);border:1px solid var(--border)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:0.82rem;font-weight:600;color:var(--charcoal);margin-bottom:6px}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:0.88rem;color:var(--charcoal);background:#fff;transition:border-color 0.2s,box-shadow 0.2s;outline:none}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(0,86,179,0.08)}
+.form-group textarea{resize:none;height:90px}
+.form-submit{width:100%;padding:14px;background:var(--primary);color:#fff;border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;transition:all 0.3s;margin-top:4px}
+.form-submit:hover{background:var(--primary-dark);box-shadow:0 6px 20px var(--primary-glow);transform:translateY(-1px)}
+.success-msg{display:none;margin-top:14px;background:#ecfdf5;border:1.5px solid #6ee7b7;border-radius:10px;padding:14px 18px;font-size:0.88rem;color:#065f46;font-weight:500}
+
+/* CONTACT */
+#contact{padding:80px 0;background:#fff}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.contact-info{display:flex;flex-direction:column;gap:0}
+.contact-item{display:flex;align-items:flex-start;gap:14px;padding:20px 0;border-bottom:1px solid var(--border)}
+.contact-item:last-child{border-bottom:none}
+.contact-icon{width:44px;height:44px;background:var(--primary-light);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-icon svg{width:20px;height:20px;stroke:var(--primary);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.contact-item strong{display:block;font-size:0.85rem;font-weight:600;margin-bottom:3px}
+.contact-item p,.contact-item a{font-size:0.83rem;color:var(--text-mid);text-decoration:none;line-height:1.6}
+.map-wrap{border-radius:18px;overflow:hidden;box-shadow:var(--card-shadow);height:100%;min-height:340px;position:relative;background:var(--primary-light)}
+.map-wrap iframe{width:100%;height:100%;min-height:340px;border:none;display:block}
+.map-fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;height:340px;gap:12px;text-align:center}
+.map-fallback svg{width:56px;height:56px;stroke:var(--primary);opacity:0.4;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
+.map-fallback p{color:var(--text-light);font-size:0.85rem}
+.map-fallback a{display:inline-flex;align-items:center;gap:6px;background:var(--primary);color:#fff;padding:10px 20px;border-radius:8px;font-size:0.85rem;font-weight:600;text-decoration:none;transition:all 0.2s;margin-top:4px}
+.map-fallback a:hover{background:var(--primary-dark)}
+
+/* FOOTER */
+footer{background:var(--charcoal);color:#fff;padding:72px 0 32px}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px}
+.footer-brand p{font-size:0.85rem;color:rgba(255,255,255,0.55);line-height:1.7;margin:16px 0 20px}
+.footer-socials{display:flex;gap:10px}
+.fsoc{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;transition:all 0.2s;text-decoration:none}
+.fsoc:hover{background:var(--primary)}
+.fsoc svg{width:16px;height:16px;fill:#fff}
+.footer-col h4{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;margin-bottom:20px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col ul li a{font-size:0.83rem;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s}
+.footer-col ul li a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:28px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.footer-bottom p{font-size:0.8rem;color:rgba(255,255,255,0.4)}
+.footer-bottom-links{display:flex;gap:20px}
+.footer-bottom-links a{font-size:0.8rem;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s}
+.footer-bottom-links a:hover{color:#fff}
+
+/* REVEAL ANIMATION */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.65s ease,transform 0.65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:0.1s}
+.reveal-d2{transition-delay:0.2s}
+.reveal-d3{transition-delay:0.3s}
+.reveal-d4{transition-delay:0.4s}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .services-grid{grid-template-columns:1fr 1fr}
+  .process-grid{grid-template-columns:1fr 1fr;gap:36px}
+  .process-grid::before{display:none}
+  .about-grid,.booking-grid,.contact-grid,.footer-grid{grid-template-columns:1fr}
+  .team-grid{max-width:600px}
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .hero-bg-img{width:100%;clip-path:none;opacity:0.8}
+  .hero-text{max-width:100%}
+  .hero-stats{gap:20px}
+  .services-grid{grid-template-columns:1fr}
+  .process-grid{grid-template-columns:1fr 1fr}
+  .team-grid{grid-template-columns:1fr 1fr;max-width:100%}
+  .testi-slide{min-width:100%}
+  .form-row{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .footer-bottom{flex-direction:column;text-align:center}
+}
+@media(max-width:480px){
+  .team-grid{grid-template-columns:1fr}
+  .process-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .hero-btns{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.5 2 6 4.5 6 7c0 2 1 3 2 4.5C8.5 13 9 15 9 17c0 2.5 1.5 4 3 4s3-1.5 3-4c0-2 .5-4 1-5.5C17 10 18 9 18 7c0-2.5-2.5-5-6-5z"/></svg>
+      </div>
+      <span class="logo-text">ShaharyarDental<span>Clinic</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#hero">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#team">Team</a>
+      <a href="#contact">Contact</a>
+      <a href="#booking" class="nav-cta">Book Now</a>
+    </div>
+    <div class="hamburger" id="ham">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <button class="close-mob" id="closeMob">✕</button>
+  <a href="#hero" class="mob-link">Home</a>
+  <a href="#about" class="mob-link">About</a>
+  <a href="#services" class="mob-link">Services</a>
+  <a href="#process" class="mob-link">Process</a>
+  <a href="#team" class="mob-link">Team</a>
+  <a href="#testimonials" class="mob-link">Reviews</a>
+  <a href="#booking" class="mob-cta mob-link">Book Now</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-bg-img"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge reveal">
+        <span class="hero-badge-dot"></span>
+        Welcome to DentalCare Clinic
+      </div>
+      <h1 class="hero-h1 reveal reveal-d1">Healthy Teeth<br>is <span>Wealth</span></h1>
+      <p class="hero-desc reveal reveal-d2">Experience comprehensive dental care with cutting-edge technology and a patient-first approach. Beautiful, healthy smiles that last a lifetime.</p>
+      <div class="hero-btns reveal reveal-d3">
+        <a href="#booking" class="btn-primary">
+          Book Appointment
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#services" class="btn-outline">Our Services</a>
+      </div>
+      <div class="hero-stats reveal reveal-d4">
+        <div class="stat">
+          <span class="stat-num">15+</span>
+          <span class="stat-label">Years Experience</span>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="stat">
+          <span class="stat-num">100+</span>
+          <span class="stat-label">Happy Patients</span>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="stat">
+          <span class="stat-num">4.9★</span>
+          <span class="stat-label">Average Rating</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal">
+        <div class="about-badge-top">
+          <strong>15+</strong>
+          <span>Years of<br>Excellence</span>
+        </div>
+        <img src="ddddd.png" alt="Dentist" class="about-main-img">
+        </div>
+      <div class="about-text reveal reveal-d2">
+        <span class="section-tag">About Us</span>
+        <h2 class="section-h2">We Care About Your Dental Health</h2>
+        <p class="section-desc">At DentalCare Clinic, we believe exceptional dental care goes beyond technical expertise. Our mission is creating a welcoming environment where patients feel comfortable and confident in their treatment journey.</p>
+        <p class="section-desc">Equipped with the latest technology and led by highly skilled professionals, we deliver personalized treatment plans ensuring the highest standards of safety and comfort.</p>
+        <div class="checks">
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Advanced Dental Technology</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Friendly & Professional Staff</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Comfortable & Relaxing Environment</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Affordable Treatment Plans</div>
+          <div class="check-item"><div class="check-icon"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>Emergency Dental Services Available</div>
+        </div>
+        <a href="#services" class="btn-primary" style="align-self:flex-start">Explore Services
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-tag" style="margin:0 auto 16px;display:table">Our Services</span>
+      <h2 class="section-h2">Comprehensive Dental Care For You</h2>
+      <p style="color:var(--text-mid);font-size:0.95rem;line-height:1.7;margin-top:12px">From routine check-ups to complex procedures, we offer a full spectrum of dental services for your entire family.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <img src="download.jfif" alt="Teeth Cleaning" class="service-img">
+        <div class="service-body">
+          <h3>Teeth Cleaning</h3>
+          <p>Professional cleaning to remove plaque and tartar, preventing cavities and gum disease while keeping your smile bright.</p>
+          <a href="#" class="service-arrow">Learn More <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-d1">
+        <img src="tooth-implants-restoration-implant-examples-260nw-2565874751.webp" alt="Dental Implants" class="service-img">
+        <div class="service-body">
+          <h3>Dental Implants</h3>
+          <p>Permanent tooth replacement solutions that look, feel, and function like natural teeth for a confident smile.</p>
+          <a href="#" class="service-arrow">Learn More <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-d2">
+        <img src="81157801.jpg" alt="Orthodontics" class="service-img">
+        <div class="service-body">
+          <h3>Orthodontics</h3>
+          <p>Straighten your teeth with braces or clear aligners for a perfectly aligned, beautiful smile at any age.</p>
+          <a href="#" class="service-arrow">Learn More <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <img src="images.jfif" alt="Cosmetic Dentistry" class="service-img">
+        <div class="service-body">
+          <h3>Cosmetic Dentistry</h3>
+          <p>Veneers, whitening, and smile makeovers designed to enhance your natural beauty and boost confidence.</p>
+          <a href="#" class="service-arrow">Learn More <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-d1">
+        <img src="images (1).jfif" alt="Root Canal" class="service-img">
+        <div class="service-body">
+          <h3>Root Canal</h3>
+          <p>Pain-free root canal therapy using advanced techniques to save infected teeth and eliminate discomfort.</p>
+          <a href="#" class="service-arrow">Learn More <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-d2">
+        <img src="AdobeStock_158833704__1605146437_44730.jpg" alt="Pediatric Dentistry" class="service-img">
+        <div class="service-body">
+          <h3>Pediatric Dentistry</h3>
+          <p>Gentle, child-friendly dental care that makes visits fun and educational for your little ones.</p>
+          <a href="#" class="service-arrow">Learn More <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-inner">
+    <div class="section-header reveal" style="margin-bottom:72px">
+      <span class="section-tag" style="margin:0 auto 16px;display:table">How It Works</span>
+      <h2 class="section-h2">Your Journey to a Perfect Smile</h2>
+      <p style="color:var(--text-mid);font-size:0.95rem;line-height:1.7;margin-top:12px">Simple, transparent, and stress-free — from your first call to a confident, healthy smile.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-step reveal">
+        <div class="step-num"><span>01</span></div>
+        <div class="step-label">Step 1</div>
+        <div class="step-title">Book Appointment</div>
+        <p class="step-desc">Choose your preferred date and service online or by phone. Quick confirmation within minutes.</p>
+      </div>
+      <div class="process-step reveal reveal-d1">
+        <div class="step-num"><span>02</span></div>
+        <div class="step-label">Step 2</div>
+        <div class="step-title">Initial Consultation</div>
+        <p class="step-desc">Our dentist evaluates your dental health, listens to your concerns, and discusses treatment options.</p>
+      </div>
+      <div class="process-step reveal reveal-d2">
+        <div class="step-num"><span>03</span></div>
+        <div class="step-label">Step 3</div>
+        <div class="step-title">Personalized Treatment</div>
+        <p class="step-desc">We craft a customized treatment plan using the latest technology for precise, comfortable care.</p>
+      </div>
+      <div class="process-step reveal reveal-d3">
+        <div class="step-num"><span>04</span></div>
+        <div class="step-label">Step 4</div>
+        <div class="step-title">Enjoy Your Smile</div>
+        <p class="step-desc">Leave with a healthier, more confident smile and aftercare guidance to maintain results.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="section-inner">
+    <div class="section-header reveal" style="margin-bottom:48px">
+      <span class="section-tag" style="margin:0 auto 16px;display:table">Our Team</span>
+      <h2 class="section-h2">Meet Our Expert Dentists</h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <img src="1111.png" alt="Dr. Shaharyar Tahir" class="team-img">
+        <div class="team-overlay"></div>
+        <div class="team-info">
+          <div class="team-name">Dr. Shaharyar Tahir</div>
+          <div class="team-role">Dental Specialist</div>
+          <div class="team-socials">
+            <a href="#" class="soc-btn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="#" class="soc-btn"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="team-card reveal reveal-d2">
+        <img src="istockphoto-2074983548-612x612.jpg" alt="Dr. James Wilson" class="team-img">
+        <div class="team-overlay"></div>
+        <div class="team-info">
+          <div class="team-name"> Dr. Maham Hamid</div>
+          <div class="team-role">Dentist</div>
+          <div class="team-socials">
+            <a href="#" class="soc-btn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="#" class="soc-btn"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+ <section id="testimonials">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-tag" style="margin:0 auto 16px;display:table">Testimonials</span>
+      <h2 class="section-h2">What Our Patients Say</h2>
+    </div>
+    <div class="testi-carousel">
+      <div class="testi-track-wrap">
+        <div class="testi-track" id="testiTrack">
+          <!-- 10 reviews, 3 visible at a time, center one highlighted -->
+          <div class="testi-slide"><div class="testi-card">
+            <div class="stars">★★★★★</div>
+            <p class="testi-text">"My teeth whitening results from this professional have me completely smitten. He is a true specialist in cosmetic dentistry. My teeth are so clean and bright that they look fantastic!"</p>
+            <div class="testi-author"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80&fit=crop" class="testi-avatar" alt="Emaan"><div><div class="testi-name">Emaan Ali</div><div class="testi-role">Teeth Whitening Patient</div></div></div>
+          </div></div>
+          <div class="testi-slide"><div class="testi-card">
+            <div class="stars">★★★★★</div>
+            <p class="testi-text">"I had a satisfactory experience with teeth whitening at this clinic. The staff was professional, the environment was clean, and the dentist Dr shaheryar explained the procedure clearly."</p>
+            <div class="testi-author"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80&fit=crop" class="testi-avatar" alt="Shehzad"><div><div class="testi-name">Shehzad Rana</div><div class="testi-role">Teeth Whitening Patient</div></div></div>
+          </div></div>
+          <div class="testi-slide"><div class="testi-card active-center">
+            <div class="stars">★★★★★</div>
+            <p class="testi-text">"I recently had a cavity filling at a dental clinic on Canal Road and I’m beyond satisfied with the experience. The dentist was extremely professional, explained every step clearly, and made sure I was comfortable."</p>
+            <div class="testi-author"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=80&fit=crop" class="testi-avatar" alt="Muneeb"><div><div class="testi-name">Muneeb Shafiq</div><div class="testi-role">Cavity Filling Patient</div></div></div>
+          </div></div>
+          <div class="testi-slide"><div class="testi-card">
+            <div class="stars">★★★★★</div>
+            <p class="testi-text">"Last night around 10 PM, my 7-year-old suddenly started crying with tooth pain after having a cold drink. We were really worried because it was late, but thankfully we noticed Shaheryar Dental Clinic and got quick care."</p>
+            <div class="testi-author"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80&fit=crop" class="testi-avatar" alt="Rana Asmar"><div><div class="testi-name">Rana Asmar Ahmad Khan</div><div class="testi-role">Pediatric Emergency Patient</div></div></div>
+          </div></div>
+          <div class="testi-slide"><div class="testi-card">
+            <div class="stars">★★★★★</div>
+            <p class="testi-text">"I recently had a dental implant placed by Dr Shereyar, and I’m extremely satisfied with the experience. The procedure was carried out with great care and professionalism from start to finish. Highly recommend!"</p>
+            <div class="testi-author"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&q=80&fit=crop" class="testi-avatar" alt="Hamna"><div><div class="testi-name">Hamna Javed</div><div class="testi-role">Dental Implant Patient</div></div></div>
+          </div></div>
+          <div class="testi-slide"><div class="testi-card">
+            <div class="stars">★★★★★</div>
+            <p class="testi-text">"I went to Shaheryar Dental Clinic for cavity fillings, and my experience was excellent. Dr. Shaheryar was very gentle and made sure I felt comfortable throughout the treatment. The fillings look natural."</p>
+            <div class="testi-author"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&q=80&fit=crop" class="testi-avatar" alt="Hassaan"><div><div class="testi-name">Hassaan Ahmad</div><div class="testi-role">Cavity Filling Patient</div></div></div>
+          </div></div>
+          <div class="testi-slide"><div class="testi-card">
+            <div class="stars">★★★★★</div>
+            <p class="testi-text">"Got my dental implant done. It was painless, the results look natural, and I highly recommend it!"</p>
+            <div class="testi-author"><img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?w=80&q=80&fit=crop" class="testi-avatar" alt="Ali"><div><div class="testi-name">Ali Ahmad</div><div class="testi-role">Dental Implant Patient</div></div></div>
+          </div></div>
+          <div class="testi-slide"><div class="testi-card">
+            <div class="stars">★★★★★</div>
+            <p class="testi-text">"Had a root canal done here and honestly it went much smoother than I expected. The clinic was clean and the staff was very supportive."</p>
+            <div class="testi-author"><img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=80&q=80&fit=crop" class="testi-avatar" alt="MBA"><div><div class="testi-name">MBA</div><div class="testi-role">Root Canal Patient</div></div></div>
+          </div></div>
+          <div class="testi-slide"><div class="testi-card">
+            <div class="stars">★★★★★</div>
+            <p class="testi-text">"I came in clinic for dental filling and crown cementation. There services are Professional with modern setup, and affordable prices — truly the best dental clinic in Faisalabad."</p>
+            <div class="testi-author"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&q=80&fit=crop" class="testi-avatar" alt="Beenish"><div><div class="testi-name">BEENISH SARWAR</div><div class="testi-role">Filling & Crown Patient</div></div></div>
+          </div></div>
+          <div class="testi-slide"><div class="testi-card">
+            <div class="stars">★★★★★</div>
+            <p class="testi-text">"Went in for gum cleaning and felt comfortable during the procedure. The dentist was gentle and careful."</p>
+            <div class="testi-author"><img src="https://images.unsplash.com/photo-1463453091185-61582044d556?w=80&q=80&fit=crop" class="testi-avatar" alt="Abdul"><div><div class="testi-name">Abdul Tawab</div><div class="testi-role">Gum Cleaning Patient</div></div></div>
+          </div></div>
+        </div>
+      </div>
+      <div class="testi-controls">
+        <button class="testi-arrow" id="testiPrev"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <div class="testi-dots" id="testiDots"></div>
+        <button class="testi-arrow" id="testiNext"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+ <!-- BOOKING -->
+<section id="booking">
+  <div class="section-inner">
+    <div class="section-header reveal" style="margin-bottom:56px">
+      <span class="section-tag" style="margin:0 auto 16px;display:table">Appointment</span>
+      <h2 class="section-h2">Book Your Visit Today</h2>
+    </div>
+
+    <div class="booking-grid">
+      <div class="booking-left reveal">
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin-bottom:12px">
+          Why Book With Us?
+        </h3>
+
+        <p style="color:var(--text-mid);font-size:0.9rem;line-height:1.7">
+          We make scheduling easy, and our team ensures a smooth, stress-free experience from the moment you walk in.
+        </p>
+
+        <div class="checks-lg">
+          <div class="check-item-lg">
+            <div class="check-icon-lg">
+              <svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+              <strong>Same-Day Appointments Available</strong>
+              <p>Flexible scheduling to fit your busy lifestyle, including evenings and weekends.</p>
+            </div>
+          </div>
+
+          <div class="check-item-lg">
+            <div class="check-icon-lg">
+              <svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+              <strong>Insurance Accepted</strong>
+              <p>We work with all major insurance providers and offer flexible payment plans.</p>
+            </div>
+          </div>
+
+          <div class="check-item-lg">
+            <div class="check-icon-lg">
+              <svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+              <strong>No Hidden Fees</strong>
+              <p>Transparent pricing with a detailed cost breakdown before treatment begins.</p>
+            </div>
+          </div>
+
+          <div class="check-item-lg">
+            <div class="check-icon-lg">
+              <svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+              <strong>Instant Confirmation</strong>
+              <p>Receive immediate booking confirmation via SMS and email.</p>
+            </div>
+          </div>
+
+          <div class="check-item-lg">
+            <div class="check-icon-lg">
+              <svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+              <strong>Free First Consultation</strong>
+              <p>New patients receive a complimentary initial exam and X-ray assessment.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="booking-right reveal reveal-d2">
+        <div class="booking-form">
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin-bottom:24px;color:var(--charcoal)">
+            Schedule Your Appointment
+          </h3>
+
+          <form id="bookForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="fullName" placeholder="Abr" required>
+              </div>
+
+              <div class="form-group">
+                <label>Phone Number</label>
+                <input type="tel" id="phone" placeholder="+92 300 0000000" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" id="email" placeholder="Abr@example.com" required>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Select Service</label>
+                <select id="service" required>
+                  <option value="">Choose service</option>
+                  <option>Teeth Cleaning</option>
+                  <option>Dental Implants</option>
+                  <option>Orthodontics</option>
+                  <option>Cosmetic Dentistry</option>
+                  <option>Root Canal</option>
+                  <option>Pediatric Dentistry</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Preferred Date</label>
+                <input type="date" id="date" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Message (Optional)</label>
+              <textarea id="message" placeholder="Tell us about your dental concerns..."></textarea>
+            </div>
+
+            <button type="submit" class="form-submit">
+              Book Appointment →
+            </button>
+          </form>
+
+          <div class="success-msg" id="successMsg">
+            ✅ Appointment requested! We'll contact you shortly.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+document.getElementById("bookForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("fullName").value;
+    const phone = document.getElementById("phone").value;
+    const email = document.getElementById("email").value;
+    const service = document.getElementById("service").value;
+    const date = document.getElementById("date").value;
+    const message = document.getElementById("message").value;
+
+    const whatsappNumber = "923052728815";
+
+    const whatsappMessage =
+`🦷 New Appointment Request
+
+👤 Name: ${name}
+📞 Phone: ${phone}
+📧 Email: ${email}
+🩺 Service: ${service}
+📅 Preferred Date: ${date}
+
+📝 Message:
+${message}`;
+
+    const whatsappURL =
+      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+    window.open(whatsappURL, "_blank");
+});
+</script>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-header reveal" style="margin-bottom:48px">
+      <span class="section-tag" style="margin:0 auto 16px;display:table">Find Us</span>
+      <h2 class="section-h2">Our Location & Contact</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="contact-item">
+          <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+          <div><strong>Address</strong><p> W Canal Rd, beside Lyallpur Galleria, Saeed Colony Nasar Ullah Khan Town, Faisalabad, 38000, Pakistan</p></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498A1 1 0 0121 19v1a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></div>
+          <div><strong>Phone</strong><a href="tel:+15551234567">  +92 305 2728815</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
+          <div><strong>Email</strong><a href="mailto:hello@dentalcareclinic.com">shaharyardentalclinic@gmail.com</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+          <div><strong>Business Hours</strong><p>Mon – Fri: 8:00 AM – 6:00 PM<br>Sat: 9:00 AM – 2:00 PM<br>Sun: Closed</p></div>
+        </div>
+      </div>
+      <div class="map-wrap reveal reveal-d2">
+        <div class="map-fallback">
+          <svg viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          <p style="font-weight:600;color:var(--primary)">DentalCare Clinic</p>
+          <p> W Canal Rd, beside Lyallpur Galleria, Saeed Colony Nasar Ullah Khan Town, Faisalabad, 38000, Pakistan</p>
+           <a href="https://maps.app.goo.gl/6Mm1MhdByeqWJbtH7"
+               target="_blank"
+               style="display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;color:#fff;">
+               <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+                 Open Google Maps</a>
+         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="section-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo" style="margin-bottom:0">
+          <div class="logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M12 2C8.5 2 6 4.5 6 7c0 2 1 3 2 4.5C8.5 13 9 15 9 17c0 2.5 1.5 4 3 4s3-1.5 3-4c0-2 .5-4 1-5.5C17 10 18 9 18 7c0-2.5-2.5-5-6-5z"/></svg></div>
+          <span class="logo-text" style="color:#fff">Shaharyar<span>Dental</span></span><span class="logo-text" style="color:#fff">Clinic</span>
+        </div>
+        <p>Providing exceptional dental care with compassion and cutting-edge technology. Your smile is our passion.</p>
+        <div class="footer-socials">
+          <a href="#" class="fsoc"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="#" class="fsoc"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="#" class="fsoc"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#process">Our Process</a></li>
+          <li><a href="#team">Our Team</a></li>
+          <li><a href="#booking">Book Now</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Teeth Cleaning</a></li>
+          <li><a href="#services">Dental Implants</a></li>
+          <li><a href="#services">Orthodontics</a></li>
+          <li><a href="#services">Cosmetic Dentistry</a></li>
+          <li><a href="#services">Root Canal</a></li>
+          <li><a href="#services">Pediatric Dentistry</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="https://maps.app.goo.gl/6Mm1MhdByeqWJbtH7" target="_blank"> W Canal Rd, beside Lyallpur Galleria, Saeed Colony Nasar Ullah Khan Town, Faisalabad, 38000, Pakistan</a></li>
+          <li><a href="tel:+923052728815">+92 305 2728815</a></li>
+          <li><a href="mailto:shaharyardentalclinic@gmail.com">shaharyardentalclinic@gmail.com</a></li>
+          <li><a href="#">Mon–Fri: 8AM – 6PM</a></li>
+          <li><a href="#">Sat: 9AM – 2PM</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 DentalCare Clinic. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Design by Mr.Abr</a>
+        
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// NAV
+const navbar=document.getElementById('navbar');
+const ham=document.getElementById('ham');
+const mobileNav=document.getElementById('mobileNav');
+const closeMob=document.getElementById('closeMob');
+window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>60));
+ham.addEventListener('click',()=>mobileNav.classList.add('open'));
+closeMob.addEventListener('click',()=>mobileNav.classList.remove('open'));
+document.querySelectorAll('.mob-link').forEach(l=>l.addEventListener('click',()=>mobileNav.classList.remove('open')));
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
+  });
+});
+
+// REVEAL
+const revealEls=document.querySelectorAll('.reveal');
+const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+revealEls.forEach(el=>ro.observe(el));
+
+// TESTIMONIALS
+const track=document.getElementById('testiTrack');
+const slides=document.querySelectorAll('.testi-slide');
+const dotsWrap=document.getElementById('testiDots');
+const total=slides.length;
+const perView=()=>window.innerWidth<768?1:3;
+let cur=0;
+let autoTimer;
+
+// Build dots
+const maxDot=()=>total-perView();
+function buildDots(){
+  dotsWrap.innerHTML='';
+  const n=maxDot()+1;
+  for(let i=0;i<n;i++){
+    const d=document.createElement('button');
+    d.className='testi-dot'+(i===cur?' active':'');
+    d.addEventListener('click',()=>{goTo(i);resetAuto()});
+    dotsWrap.appendChild(d);
+  }
+}
+function updateDots(){
+  document.querySelectorAll('.testi-dot').forEach((d,i)=>d.classList.toggle('active',i===cur));
+}
+function updateCenter(){
+  const pv=perView();
+  slides.forEach((s,i)=>{
+    const card=s.querySelector('.testi-card');
+    card.classList.toggle('active-center',i===cur+Math.floor(pv/2));
+  });
+}
+function goTo(idx){
+  const max=maxDot();
+  cur=Math.max(0,Math.min(idx,max));
+  const pv=perView();
+  const pct=100/pv;
+  track.style.transform=`translateX(-${cur*pct}%)`;
+  updateDots();
+  updateCenter();
+}
+document.getElementById('testiNext').addEventListener('click',()=>{goTo(cur<maxDot()?cur+1:0);resetAuto()});
+document.getElementById('testiPrev').addEventListener('click',()=>{goTo(cur>0?cur-1:maxDot());resetAuto()});
+function startAuto(){autoTimer=setInterval(()=>goTo(cur<maxDot()?cur+1:0),4000)}
+function resetAuto(){clearInterval(autoTimer);startAuto()}
+window.addEventListener('resize',()=>{buildDots();goTo(0)});
+buildDots();goTo(1);
+startAuto();
+
+// BOOKING FORM
+document.getElementById('bookForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const btn=e.target.querySelector('.form-submit');
+  btn.textContent='Booking...';btn.disabled=true;
+  setTimeout(()=>{
+    e.target.reset();btn.textContent='Book Appointment →';btn.disabled=false;
+    const sm=document.getElementById('successMsg');sm.style.display='block';
+    setTimeout(()=>sm.style.display='none',5000);
+  },1500);
+});
+</script>
+</body>
+</html>
